@@ -1,8 +1,8 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import router from './src/routes/crsroutes'
-require('dotenv').config()
-require('./db').connect()
+const InitializeDB = require('./db')
+InitializeDB();
 
 const app = express()
 const PORT = 3000
