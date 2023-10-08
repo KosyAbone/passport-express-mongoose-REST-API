@@ -15,7 +15,7 @@ app.get('/', (req,res) =>
 )
 
 
-app.use('/course', router)
+app.use('/book', router)
 
 try{
     app.listen(PORT, () => {

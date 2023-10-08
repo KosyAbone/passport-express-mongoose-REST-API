@@ -1,19 +1,24 @@
 import mongoose from "mongoose";
 
-const courseSchema = new mongoose.Schema({
-    name: {
+const BookSchema = new mongoose.Schema({
+    BooksName: {
         type: String,
-        required: 'Enter your name'
+        required: 'Enter the title of the book'
     },
-    programName: {
+    ISBN: {
         type: String,
-        required: 'Enter your program name'
+        required: 'Book must have ISBN'
     },
-    college: {
-        type: String
-    },
-    collegeContact: {
+    Rating: {
         type: Number
+    },
+    Author: {
+        type: String,
+        required: 'Enter the author of the book'
+    },
+    Genre: {
+        type: String,
+        required: 'Fill in the genre'
     },
     createdDate: {
         type: Date,
@@ -21,5 +26,5 @@ const courseSchema = new mongoose.Schema({
     }
 })
 
-const Course = mongoose.model('Course', courseSchema)
-export default Course
+const Book = mongoose.model('Book', BookSchema)
+export default Book

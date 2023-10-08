@@ -1,20 +1,15 @@
 import express from "express";
-import { addNewCourse, getAllCourses, getCourseById } from "../controllers/controllers";
-
+import { addNewBook, getAllBooks, getBookById, updateBook, deleteBook } from "../controllers/controllers";
 const router = express.Router()
 
-router.get('/', getAllCourses)
+router.get('/', getAllBooks);
 
-router.get('/:id', getCourseById)
+router.get('/:id', getBookById);
 
-router.post('/', addNewCourse)
+router.post('/', addNewBook)
 
-router.put('/:id', (req,res) => 
-    res.send('PUT request is successful')
-)
+router.put('/:id', updateBook)
 
-router.delete('/:id', (req,res) => 
-    res.send('DELETE request is successful')
-)
+router.delete('/:id', deleteBook)
 
 export default router
