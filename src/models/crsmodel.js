@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const BookSchema = new mongoose.Schema({
-    BooksName: {
+    BookName: {
         type: String,
         required: 'Enter the title of the book'
     },
