@@ -1,8 +1,15 @@
+/*
+  Filename: index.js
+  Student's Name: Abhijit Singh
+  Student ID: 200533462
+  Date: 12-10-2023
+*/
+
 import express from 'express'
 import bodyParser from 'body-parser'
 import router from './src/routes/crsroutes'
 const InitializeDB = require('./db')
-InitializeDB();
+InitializeDB(); //initialize the database
 
 const app = express()
 const PORT = 3000
@@ -15,7 +22,7 @@ app.get('/', (req,res) =>
 )
 
 
-app.use('/book', router)
+app.use('/book', router) //route to the book controller
 
 try{
     app.listen(PORT, () => {

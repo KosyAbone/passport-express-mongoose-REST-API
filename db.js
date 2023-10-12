@@ -1,3 +1,10 @@
+/*
+  Filename: db.js
+  Student's Name: Kosisochukwu Abone
+  Student ID: 200569052
+  Date: 12-10-2023
+*/
+
 require('dotenv').config()
 const mongoose = require('mongoose');
 const { MONGO_URL } = process.env
@@ -7,7 +14,7 @@ const InitializeDB = () => {
     mongoose
       .connect(MONGO_URL)
       .then(() => {
-        console.log("Successfully connected to database");
+        console.log("Successfully connected to database"); 
       })
       .catch((error) => {
         console.log("database connection failed. exiting now...");

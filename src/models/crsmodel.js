@@ -1,6 +1,13 @@
+/*
+  Filename: crsModel.js
+  Student's Name: Ilham Sheikh
+  Student ID: 200557496
+  Date: 12-10-2023
+*/
+
 import mongoose from "mongoose";
 
-const BookSchema = new mongoose.Schema({
+const BookSchema = new mongoose.Schema({ //create a schema for the book model
     BookName: {
         type: String,
         required: 'Enter the title of the book'
@@ -26,5 +33,5 @@ const BookSchema = new mongoose.Schema({
     }
 })
 
-const Book = mongoose.model('Book', BookSchema)
+const Book = mongoose.model('Book', BookSchema) //create a model for the book schema
 export default Book

@@ -1,4 +1,11 @@
-import Book from '../models/crsmodel'
+/*
+  Filename: controller.js
+  Student's Name: Kosisochukwu Abone
+  Student ID: 200569052
+  Date: 12-10-2023
+*/
+
+import Book from '../models/crsModel'
 
 /**
  * Function to Add a new book to the database.
