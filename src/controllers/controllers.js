@@ -1,6 +1,11 @@
 import Book from '../models/crsmodel'
 
-//function to add a new book
+/**
+ * Function to Add a new book to the database.
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {Object} - The newly added book with its details as a JSON response.
+ */
 export const addNewBook = async(req, res) => {
     try{
         let newBook = await Book.create(req.body);
@@ -10,7 +15,12 @@ export const addNewBook = async(req, res) => {
     }
 }
 
-//function to add multiple books
+/**
+ * Function to Add multiple books to the database.
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {Array} - An array of the newly added books as a JSON response.
+ */
 export const addMultipleBooks = async(req, res) => {
     try{
         let newBooks = await Book.insertMany(req.body);
@@ -20,7 +30,12 @@ export const addMultipleBooks = async(req, res) => {
     }
 }
 
-//function to get all books
+/**
+ * Function to Get all books from the database.
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {Array} - An array of all books as a JSON response.
+ */
 export const getAllBooks = async(req, res) => {
     try{
         const allBooks = await Book.find();
@@ -31,7 +46,12 @@ export const getAllBooks = async(req, res) => {
     }
 }
 
-//function to get a book by its id
+/**
+ * Function to Get a book by its ID.
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {Object} - The details of the book with the specified ID as a JSON response.
+ */
 export const getBookById = async(req, res) => {
     try{
         const book = await Book.findById(req.params.id);
@@ -44,7 +64,12 @@ export const getBookById = async(req, res) => {
     }
 }
 
-//function to update a book
+/**
+ * Function to Update a book by its ID.
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {Object} - A success message and the updated book details as a JSON response.
+ */
 export const updateBook = async(req, res) => {
     try{
         const updatedBook = await Book.findByIdAndUpdate(req.params.id, req.body, {new: true});
@@ -57,7 +82,12 @@ export const updateBook = async(req, res) => {
     }
 }
 
-//create a function to delete a book
+/**
+ * Function to Delete a book by its ID.
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {Object} - A success message confirming the book deletion as a JSON response.
+ */
 export const deleteBook = async(req, res) => {
     try{
         const book = await Book.findByIdAndDelete(req.params.id);
