@@ -5,6 +5,7 @@
   Date: 12-10-2023
 */
 
+require('dotenv').config()
 import express from 'express'
 import bodyParser from 'body-parser'
 import router from './src/routes/crsroutes'
@@ -12,7 +13,7 @@ const InitializeDB = require('./db')
 InitializeDB(); //initialize the database
 
 const app = express()
-const PORT = 3000
+const PORT = process.env.PORT || 4000
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
