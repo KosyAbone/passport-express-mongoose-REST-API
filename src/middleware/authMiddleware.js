@@ -11,25 +11,24 @@ const authenticateUser = (req, res, next) => {
     if (!user) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
-
+    
     req.login(user, (err) => {
       if (err) {
         return res.status(500).json({ error: 'Internal Server Error' });
       }
-
       next();
     });
   })(req, res, next);
 };
 
 const registerUser = async (req, res, next) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
 
   try {
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ username});
 
     if (existingUser) {
-      return res.status(400).json({ error: 'Email already exists' });
+      return res.status(400).json({ error: 'Username already exists' });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -39,13 +38,13 @@ const registerUser = async (req, res, next) => {
 
     req.login(newUser, (err) => {
       if (err) {
-        return res.status(500).json({ error: 'Internal Server Error' });
+        return res.status(500).json({ error: 'Internal Server Error' + err });
       }
 
       next();
     });
-  } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
+  } catch (err) {
+    res.status(500).json({ error: 'Internal Server Error' + err });
   }
 };
 

@@ -8,6 +8,8 @@
 require('dotenv').config()
 import express from 'express'
 import bodyParser from 'body-parser'
+import session from 'express-session';
+import passport from 'passport';
 import bookRouter from './src/routes/crsroutes'
 import authRouter from './src/routes/authRoutes'
 const InitializeDB = require('./db')
@@ -15,6 +17,20 @@ InitializeDB(); //initialize the database
 
 const app = express()
 const PORT = process.env.PORT || 4000
+
+
+// Use express-session middleware to manage sessions
+app.use(
+    session({
+      secret: process.env.SECRET_KEY,
+      resave: false,
+      saveUninitialized: false,
+    })
+  );
+  
+// Initialize Passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
