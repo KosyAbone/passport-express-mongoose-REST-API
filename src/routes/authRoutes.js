@@ -6,7 +6,9 @@ const router = express.Router()
 router.post('/register', registerUser);
   
 // Login route
-router.post('/login', authenticateUser);
+router.post('/login', authenticateUser, (req, res) => {
+    res.json({ message: 'Login successful', success: true });
+});
 
 // Logout route
 router.get('/logout', (req, res) => {

@@ -16,8 +16,7 @@ const authenticateUser = (req, res, next) => {
       if (err) {
         return res.status(500).json({ error: 'Internal Server Error ' + err, success: false });
       }
-
-      return res.status(200).json({ message: 'Login successful', success: true});
+      next();
     });
   })(req, res, next);
 };
