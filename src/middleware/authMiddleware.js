@@ -3,20 +3,21 @@ import bcrypt from 'bcrypt';
 import User from '../models/userModel';
 
 const authenticateUser = (req, res, next) => {
-  passport.authenticate('local', (err, user) => {
+  passport.authenticate('local', (err, user, info) => {
     if (err) {
-      return res.status(500).json({ error: 'Internal Server Error' });
+      return res.status(500).json({ error: 'Internal Server Error ' + err, success: false });  
     }
 
     if (!user) {
-      return res.status(401).json({ error: 'Unauthorized' });
+      return res.status(401).json({ error: info.message, success: false });
     }
-    
-    req.login(user, (err) => {
+
+    req.logIn(user, (err) => {
       if (err) {
-        return res.status(500).json({ error: 'Internal Server Error' });
+        return res.status(500).json({ error: 'Internal Server Error ' + err, success: false });
       }
-      next();
+
+      return res.status(200).json({ message: 'Login successful', success: true});
     });
   })(req, res, next);
 };
@@ -28,7 +29,7 @@ const registerUser = async (req, res, next) => {
     const existingUser = await User.findOne({ username});
 
     if (existingUser) {
-      return res.status(400).json({ error: 'Username already exists' });
+      return res.status(400).json({ error: 'Username already exists', success: false });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -38,13 +39,13 @@ const registerUser = async (req, res, next) => {
 
     req.login(newUser, (err) => {
       if (err) {
-        return res.status(500).json({ error: 'Internal Server Error' + err });
+        return res.status(500).json({ error: 'Internal Server Error ' + err, success: false });
       }
-
+      res.status(201).json({ message: 'User registered successfully', newUser, success: true });
       next();
     });
   } catch (err) {
-    res.status(500).json({ error: 'Internal Server Error' + err });
+    res.status(500).json({ error: 'Internal Server Error ' + err, success: false });
   }
 };
 
