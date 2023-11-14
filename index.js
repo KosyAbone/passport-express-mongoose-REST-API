@@ -8,7 +8,8 @@
 require('dotenv').config()
 import express from 'express'
 import bodyParser from 'body-parser'
-import router from './src/routes/crsroutes'
+import bookRouter from './src/routes/crsroutes'
+import authRouter from './src/routes/authRoutes'
 const InitializeDB = require('./db')
 InitializeDB(); //initialize the database
 
@@ -22,8 +23,8 @@ app.get('/', (req,res) =>
     res.send(`Node and express server is running on port ${PORT}`)
 )
 
-
-app.use('/book', router) //route to the book controller
+app.use('/auth', authRouter) //route for authentication
+app.use('/book', bookRouter) //route to the book controller
 
 try{
     app.listen(PORT, () => {
